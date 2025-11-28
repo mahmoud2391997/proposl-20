@@ -10,7 +10,8 @@ export const generateStoryNode = async (
 ): Promise<string> => {
   try {
     // Guideline: Always use new GoogleGenAI({ apiKey: process.env.API_KEY })
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    // Use non-null assertion (!) as we rely on the define plugin in vite.config.ts to ensure it exists
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY! });
     
     let prompt = "";
     if (context === 'intro') {
@@ -56,7 +57,7 @@ export const generateAnalysis = async (
   storyState: StoryState
 ): Promise<string> => {
   try {
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY! });
     const prompt = `
       Act as a senior training officer in a futuristic simulation.
       Analyze the performance of Trainee ${profile.name} (${profile.role}).
